@@ -24,21 +24,27 @@ h1 {
 
 input {
   height: 40px;
-  border: none;
+  border: 2px solid #1F1F3D;
   border-radius: 1%;
 }
 
 .search-form {
     margin-top: 1.5%;
     margin-right: 1.5%;
+    display: flex;
+    padding-bottom: 0.87%;
+    width: 30%;
   }
 
 .search-button {
   border: none;
+  width: 10%;
+  background-color: #C7C3D8;
   }
 
 .search-input {
   border: none;
+  width: 90%;
   }
 
 main {
@@ -49,6 +55,7 @@ aside {
   background: #587A8A;
   height: 100%;
   width: 30%;
+  border-right: 2px solid #3C6577;
   }
 
 aside form {
@@ -56,6 +63,7 @@ aside form {
   display: flex;
   flex-direction: column;
   }
+
 aside button {
   height: 40px;
   border: none;
@@ -66,8 +74,15 @@ aside button {
   font-size: 1.3125pc;
 }
 
+label {
+  color: #F3F6F7;
+  font-size: .75pc;
+  margin-bottom: 1%;
+  font-weight: 400;
+}
+
 .input-section {
-  border-bottom: 1px solid #3C6577;
+  border-bottom: 2px solid #3C6577;
   display: flex;
   flex-direction: column;
   height: 50%;
