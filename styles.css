@@ -7,6 +7,12 @@ html {
 
 body {
   height: 100%;
+  font-family: 'Open Sans', sans-serif;
+}
+
+button {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
 }
 
 header {
@@ -18,15 +24,24 @@ header {
   }
 
 h1 {
-    margin-left: 1.5%;
-    margin-top: 1.5%;
+  color: #FFFFFF;
+  font-weight: 800;
+  font-size: 2.315pc;
+  margin-left: 1.5%;
+  margin-top: 1.5%;
+  text-transform: uppercase;
   }
+
+span {
+  color: #FFC30C;
+}
 
 input {
   height: 40px;
   border: 2px solid #1F1F3D;
-  border-radius: 1%;
+  border-radius: 2%;
 }
+
 
 .search-form {
     margin-top: 1.5%;
@@ -40,12 +55,15 @@ input {
   border: none;
   width: 10%;
   background-color: #C7C3D8;
+  border-radius: 9% 0% 0% 9%;
   }
 
 .search-input {
   border: none;
   width: 90%;
+  border-radius: 0% 2% 2% 0%;
   }
+
 
 main {
   height: 100%;
@@ -70,13 +88,12 @@ aside button {
   border-radius: 2%;
   background-color: #1F1F3D;
   color: #FFFFFF;
-  font-weight: 400;
-  font-size: 1.3125pc;
+  font-size: 1.2pc;
 }
 
 label {
   color: #F3F6F7;
-  font-size: .75pc;
+  font-size: 1pc;
   margin-bottom: 1%;
   font-weight: 400;
 }
@@ -104,3 +121,24 @@ label {
   margin-top: 3%;
   width: 95%;
 }
+
+.item-input-container {
+  width: 100%;
+  display: flex;
+}
+
+.plus-button {
+    width: 11%;
+    border: none;
+    border-radius: 0% 10% 10% 0%;
+  }
+
+.item-input {
+  width: 88%;
+  border: none;
+  border: 2px solid #1F1F3D;
+  border-radius: 2% 0% 0% 2%;
+}
+
+
+
