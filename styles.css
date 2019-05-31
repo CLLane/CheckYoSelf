@@ -10,11 +10,11 @@ body {
 }
 
 header {
-    background-color: blue;
-    display: flex;
-    height: 75px;
-    justify-content: space-between;
-    width: 100%;
+  background-color: #1F1F3D;
+  display: flex;
+  height: 75px;
+  justify-content: space-between;
+  width: 100%;
   }
 
 h1 {
@@ -28,11 +28,11 @@ h1 {
   }
 
 .search-button {
-    border: none;
+  border: none;
   }
 
 .search-input {
-    border: none;
+  border: none;
   }
 
 main {
@@ -40,15 +40,40 @@ main {
 }
 
 aside {
-    background: rebeccapurple;
-    height: 100%;
-    width: 30%;
+  background: #587A8A;
+  height: 100%;
+  width: 30%;
   }
 
+aside form {
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  }
+aside button {
+
+}
+
 .input-section {
-    border-bottom: solid;
+    border-bottom: 1px solid #1F1F3D;
     display: flex;
     flex-direction: column;
     height: 50%;
     justify-content: space-around;
+    padding-left: 10px;
   }
+
+.clear-button {
+    margin-top: 3%;
+}
+
+.filter-section {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.filter-button {
+  margin-top: 3%;
+  width: 95%;
+}
