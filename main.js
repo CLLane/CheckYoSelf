@@ -5,8 +5,8 @@ var itemInput = document.querySelector('#item-input');
 var makeCardButton = document.querySelector('#make-button');
 var tentativeItemList = document.querySelector('#tentative-item-list')
 var cardsArray = [];
-pageloadHandler();
 var clearItemsButton = document.querySelector('#clear-button')
+pageloadHandler();
 
 
 cardSection.addEventListener('click', cardSectionHandler)
@@ -18,8 +18,9 @@ tentativeItemList.addEventListener('click', deleteTentativeItem)
 clearItemsButton.addEventListener('click', clearButtonHandler)
 
 
-function makeCardButtonHelper() {
+function makeCardButtonHelper(e) {
  enableMakeButtonUl();
+ disableClearAll();
 }
 
 
@@ -31,7 +32,7 @@ function createTodoTask() {
   localStorage.setItem('todoTasks', JSON.stringify([]));
 }
 
-function generateCard(e) {
+function generateCard(e, title, tasks) {
   e.preventDefault();
   var taskCard = `<article class="todo-card">
         <h2>Title</h2>
@@ -51,12 +52,17 @@ function generateCard(e) {
         </footer>
       </article>`
   cardSection.insertAdjacentHTML('afterbegin', taskCard);
+  clearButtonHandler(e);
 };
-
 
 function disableMakeButton() {
   titleInput.value === '' || itemInput.value === '' ? makeCardButton.disabled = true: makeCardButton.disabled = false;  
 }
+
+function disableClearAll() {
+  titleInput.value === '' || itemInput.value === '' ? clearItemsButton.disabled = true: clearItemsButton.disabled = false;
+}
+
 
 function enableMakeButtonUl () {
   var item = document.getElementById('tentative-item');
@@ -86,6 +92,7 @@ function clearButtonHandler(e) {
   resetTitleInput();
   clearTaskUl();
   enableMakeButtonUl();
+  disableClearAll() 
 
 
 }
@@ -94,7 +101,7 @@ function tentativeItemHandler(e) {
   e.preventDefault();
   var itemId = addItemToArray();
   createTentativeItem(itemInput.value, itemId)
-  resetInput();
+  resetItemInput();
   enableMakeButtonUl();
   disablePlusButton();
 
@@ -132,6 +139,7 @@ function deleteTodoCard(e) {
 function disableButtonHelper (e) {
   e.preventDefault();
   disablePlusButton();
+  disableClearAll();
 }
 
 function disablePlusButton() {
