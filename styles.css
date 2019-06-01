@@ -124,6 +124,7 @@ label {
 .item-input-container {
   width: 100%;
   display: flex;
+  margin-bottom: 10px;
 }
 
 .plus-button {
@@ -133,11 +134,6 @@ label {
   border-radius: 0% 10% 10% 0%;
   }
 
-.plus-button:disabled {
-  background-color: #C7C3D8;
-  border: 2px solid #1F1F3D;
-  border-left: none;
-}
 
 .item-input {
   width: 89%;
@@ -152,8 +148,11 @@ label {
   columns: 2 250px;
   column-gap: 30px;
   height: auto;
+}
 
-
+.make-button:disabled {
+  background-color: #C7C3D8;
+  border: 2px solid #1F1F3D;
 }
 
 article {
@@ -210,3 +209,26 @@ footer img {
   height: 25px;
 }
 
+ul {
+  display: flex;
+  flex-direction: column;
+}
+
+.button-form {
+  margin-bottom: 10px;
+}
+
+.delete-task {
+  height: 25px;
+  margin-right: 5px;
+}
+
+.tentative-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.title-form {
+  margin-bottom: 10px;
+}

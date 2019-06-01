@@ -3,11 +3,14 @@ var plusButton = document.querySelector('#plus-button');
 var titleInput = document.querySelector('#title-input');
 var itemInput = document.querySelector('#item-input');
 var makeCardButton = document.querySelector('#make-button');
+var tentativeItemList = document.querySelector('#tentative-item-list')
 
-// plusButton.addEventListener('click', );
+
+
+plusButton.addEventListener('click', tentativeItemHandler);
 makeCardButton.addEventListener('click', generateCard);
-titleInput.addEventListener('keyup', disablePlusButton)
-itemInput.addEventListener('keyup', disablePlusButton )
+titleInput.addEventListener('keyup', disableMakeButton)
+itemInput.addEventListener('keyup', disableMakeButton )
 
 function generateCard(e) {
   e.preventDefault();
@@ -32,6 +35,30 @@ function generateCard(e) {
 };
 
 
-function disablePlusButton() {
-  titleInput.value === '' || itemInput.value === '' ? plusButton.disabled = true: plusButton.disabled = false;  
+function disableMakeButton() {
+  titleInput.value === '' || itemInput.value === '' ? makeCardButton.disabled = true: makeCardButton.disabled = false;  
 }
+
+
+function tentativeItemHandler(e) {
+  e.preventDefault();
+  createTentativeItem(itemInput.value)
+} 
+
+
+function createTentativeItem(input) {
+  var tentativeItem = `<li class="tentative-item"> 
+    <img src="images/delete.svg" class="delete-task"> ${input} </li>`
+  tentativeItemList.insertAdjacentHTML('beforeend', tentativeItem)
+}
+
+
+
+
+
+
+
+
+
+
+
