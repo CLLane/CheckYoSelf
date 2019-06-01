@@ -11,6 +11,7 @@ plusButton.addEventListener('click', tentativeItemHandler);
 makeCardButton.addEventListener('click', generateCard);
 titleInput.addEventListener('keyup', disableMakeButton)
 itemInput.addEventListener('keyup', disableMakeButton )
+tentativeItemList.addEventListener('click', deleteTentativeItem)
 
 function generateCard(e) {
   e.preventDefault();
@@ -52,9 +53,12 @@ function createTentativeItem(input) {
   tentativeItemList.insertAdjacentHTML('beforeend', tentativeItem)
 }
 
-
-
-
+function deleteTentativeItem(e) {
+  if (e.target.classList.contains("delete-task")) {
+    var taskToDelete = e.target;
+    taskToDelete.parentNode.remove();
+  }
+}
 
 
 
