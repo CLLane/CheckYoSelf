@@ -10,7 +10,7 @@
   <header>
       <h1>Check <span>Yo'</span> Self</h1>
       <form class="search-form">
-        <button class="search-button"><img src="images/search.svg">
+        <button class="search-button" id="search-button"><img src="images/search.svg">
         </button>
         <input type="text" class="search-input">
       </form>
@@ -20,20 +20,19 @@
       <section class="input-section">
         <form>
           <label class="title-label">Task Title</label>
-          <input type="text" class="title-input">
+          <input type="text" class="title-input" id="title-input">
         </form>
         <ul>
-
         </ul>
         <form>
           <label>Task Item</label>
           <div class="item-input-container">
-            <input type="text" class="item-input">
-            <button class="plus-button">+</button>
+            <input type="text" class="item-input" id="item-input">
+            <button class="plus-button" id="plus-button" disabled>+</button>
           </div>
         </form>
         <form>
-          <button class="make-button">Make Task List</button>
+          <button class="make-button" id="make-button">Make Task List</button>
           <button class="clear-button">Clear All</button>
         </form>
       </section>
@@ -41,7 +40,7 @@
         <button class="filter-button">Filter By Urgency</button>
       </section>
     </aside>
-    <section>
+    <section class="card-section masonry" id="card-section">
     </section>
   </main>
   </head>

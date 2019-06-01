@@ -1,12 +1,9 @@
 * {
   box-sizing: border-box;
 }
-html {
-  height: 100%;
-}
 
 body {
-  height: 100%;
+  height: 100vh;
   font-family: 'Open Sans', sans-serif;
 }
 
@@ -66,12 +63,13 @@ input {
 
 
 main {
-  height: 100%;
+ /* height: 100%;*/
+  display: flex;
 }
 
 aside {
   background: #587A8A;
-  height: 100%;
+  /*height: 100%;*/
   width: 30%;
   border-right: 2px solid #3C6577;
   }
@@ -102,7 +100,7 @@ label {
   border-bottom: 2px solid #3C6577;
   display: flex;
   flex-direction: column;
-  height: 50%;
+  min-height: 20em;
   justify-content: space-around;
   padding-left: 10px;
   }
@@ -113,6 +111,7 @@ label {
 
 .filter-section {
   display: flex;
+  min-height: 25em;
   padding-left: 2%;
   width: 100%;
 }
@@ -128,17 +127,86 @@ label {
 }
 
 .plus-button {
-    width: 11%;
-    border: none;
-    border-radius: 0% 10% 10% 0%;
+  width: 11%;
+  height: 40px;
+  border: none;
+  border-radius: 0% 10% 10% 0%;
   }
 
-.item-input {
-  width: 88%;
-  border: none;
+.plus-button:disabled {
+  background-color: #C7C3D8;
   border: 2px solid #1F1F3D;
+  border-left: none;
+}
+
+.item-input {
+  width: 89%;
+  border: 2px solid #1F1F3D;
+  border-right: none;
   border-radius: 2% 0% 0% 2%;
 }
 
+.card-section {
+  width: 70%;
+  padding: 1.5em;
+  columns: 2 250px;
+  column-gap: 30px;
+  height: auto;
 
+
+}
+
+article {
+  width: 100%;
+  min-height: 250px;
+  display: flex;
+  flex-direction: column;
+  background-color: #FAFDFF;
+  border-left: 2px solid #C7C3D8;
+  border-right: 2px solid #C7C3D8;
+  break-inside: avoid;
+}
+
+.on-card-tasks {
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 6px;
+  padding-right: 6px;
+  border-top: 2px solid #C7C3D8;
+  border-bottom: 2px solid #C7C3D8;
+  height: 50px;
+
+}
+ 
+h2 {
+  border-bottom: 2px solid #C7C3D8;
+  border-top: 2px solid #C7C3D8;
+  height: 40px
+}
+
+.card-image {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+div img {
+  margin-bottom: 1%;
+}
+
+p {
+  font-size: 10px;
+}
+
+footer img {
+  height: 25px;
+}
 
