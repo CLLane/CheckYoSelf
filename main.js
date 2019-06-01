@@ -6,16 +6,23 @@ var makeCardButton = document.querySelector('#make-button');
 var tentativeItemList = document.querySelector('#tentative-item-list')
 
 
-
+cardSection.addEventListener('click', cardSectionHandler)
 plusButton.addEventListener('click', tentativeItemHandler);
 makeCardButton.addEventListener('click', generateCard);
-titleInput.addEventListener('keyup', disableMakeButton)
-itemInput.addEventListener('keyup', disableMakeButton )
+itemInput.addEventListener('keyup', disableButtonHelper)
+titleInput.addEventListener('keyup', makeCardButtonHelper)
 tentativeItemList.addEventListener('click', deleteTentativeItem)
+
+
+function makeCardButtonHelper() {
+ enableMakeButtonUl();
+
+}
+
 
 function generateCard(e) {
   e.preventDefault();
-  var taskCard = `<article>
+  var taskCard = `<article class="todo-card">
         <h2>Title</h2>
         <ul class="on-card-tasks">
           <li>Task Item</li>
@@ -23,11 +30,11 @@ function generateCard(e) {
         </ul>
         <footer>
           <div class="card-image">
-            <img src="images/urgent.svg">
+            <img src="images/urgent.svg" class="urgent-card">
             <p>URGENT</p>
           </div>
           <div class="card-image">
-            <img src="images/delete.svg">
+            <img src="images/delete.svg" class="delete-card">
             <p>DELETE</p>
           </div>
         </footer>
@@ -35,20 +42,32 @@ function generateCard(e) {
   cardSection.insertAdjacentHTML('afterbegin', taskCard);
 };
 
-
-function disableMakeButton() {
-  titleInput.value === '' || itemInput.value === '' ? makeCardButton.disabled = true: makeCardButton.disabled = false;  
+function enableMakeButtonUl () {
+  var item = document.getElementById('tentative-item');
+  if (item == undefined || titleInput.value === '') {
+    makeCardButton.disabled = true;
+  }
+  if (item != undefined && titleInput.value !== '') { 
+    makeCardButton.disabled = false;
+  }
 }
 
+
+function resetInput() {
+  itemInput.value = '';
+
+}
 
 function tentativeItemHandler(e) {
   e.preventDefault();
   createTentativeItem(itemInput.value)
+  resetInput();
+  enableMakeButtonUl();
+  disablePlusButton();
 } 
 
-
 function createTentativeItem(input) {
-  var tentativeItem = `<li class="tentative-item"> 
+  var tentativeItem = `<li class="tentative-item" id="tentative-item"> 
     <img src="images/delete.svg" class="delete-task"> ${input} </li>`
   tentativeItemList.insertAdjacentHTML('beforeend', tentativeItem)
 }
@@ -57,9 +76,30 @@ function deleteTentativeItem(e) {
   if (e.target.classList.contains("delete-task")) {
     var taskToDelete = e.target;
     taskToDelete.parentNode.remove();
+    enableMakeButtonUl();
   }
 }
 
+function cardSectionHandler(e) {
+  deleteTodoCard(e);
+}
+
+function deleteTodoCard(e) {
+  if (e.target.classList.contains('delete-card')) {
+    var taskToDelete = e.target;
+    e.target.closest('.todo-card').remove();
+
+  }
+}
+
+function disableButtonHelper (e) {
+  e.preventDefault();
+  disablePlusButton();
+}
+
+function disablePlusButton() {
+  itemInput.value === '' ? plusButton.disabled = true: plusButton.disabled = false;
+}
 
 
 
