@@ -4,6 +4,8 @@ var titleInput = document.querySelector('#title-input');
 var itemInput = document.querySelector('#item-input');
 var makeCardButton = document.querySelector('#make-button');
 var tentativeItemList = document.querySelector('#tentative-item-list')
+var clearItemsButton = document.querySelector('#clear-button')
+
 
 
 cardSection.addEventListener('click', cardSectionHandler)
@@ -12,11 +14,11 @@ makeCardButton.addEventListener('click', generateCard);
 itemInput.addEventListener('keyup', disableButtonHelper)
 titleInput.addEventListener('keyup', makeCardButtonHelper)
 tentativeItemList.addEventListener('click', deleteTentativeItem)
+clearItemsButton.addEventListener('click', clearButtonHandler)
 
 
 function makeCardButtonHelper() {
  enableMakeButtonUl();
-
 }
 
 
@@ -42,6 +44,11 @@ function generateCard(e) {
   cardSection.insertAdjacentHTML('afterbegin', taskCard);
 };
 
+
+function disableMakeButton() {
+  titleInput.value === '' || itemInput.value === '' ? makeCardButton.disabled = true: makeCardButton.disabled = false;  
+}
+
 function enableMakeButtonUl () {
   var item = document.getElementById('tentative-item');
   if (item == undefined || titleInput.value === '') {
@@ -52,16 +59,32 @@ function enableMakeButtonUl () {
   }
 }
 
-
-function resetInput() {
+function resetItemInput() {
   itemInput.value = '';
+}
+
+function resetTitleInput() {
+  titleInput.value = '';
+}
+
+function clearTaskUl() {
+  tentativeItemList.innerHTML = '';
+}
+
+function clearButtonHandler(e) {
+  e.preventDefault();
+  resetItemInput();
+  resetTitleInput();
+  clearTaskUl();
+  enableMakeButtonUl();
+
 
 }
 
 function tentativeItemHandler(e) {
   e.preventDefault();
   createTentativeItem(itemInput.value)
-  resetInput();
+  resetItemInput();
   enableMakeButtonUl();
   disablePlusButton();
 } 
