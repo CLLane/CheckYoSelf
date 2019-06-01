@@ -18,21 +18,21 @@
   <main>
     <aside>
       <section class="input-section">
-        <form>
+        <form class="title-form">
           <label class="title-label">Task Title</label>
           <input type="text" class="title-input" id="title-input">
         </form>
-        <ul>
+        <ul class="tentative-item-list" id="tentative-item-list">
         </ul>
         <form>
           <label>Task Item</label>
           <div class="item-input-container">
             <input type="text" class="item-input" id="item-input">
-            <button class="plus-button" id="plus-button" disabled>+</button>
+            <button class="plus-button" id="plus-button">+</button>
           </div>
         </form>
-        <form>
-          <button class="make-button" id="make-button">Make Task List</button>
+        <form class="button-form">
+          <button class="make-button" id="make-button" disabled>Make Task List</button>
           <button class="clear-button">Clear All</button>
         </form>
       </section>
