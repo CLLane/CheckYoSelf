@@ -4,8 +4,9 @@ var titleInput = document.querySelector('#title-input');
 var itemInput = document.querySelector('#item-input');
 var makeCardButton = document.querySelector('#make-button');
 var tentativeItemList = document.querySelector('#tentative-item-list')
+var cardsArray = [];
+pageloadHandler();
 var clearItemsButton = document.querySelector('#clear-button')
-
 
 
 cardSection.addEventListener('click', cardSectionHandler)
@@ -21,6 +22,14 @@ function makeCardButtonHelper() {
  enableMakeButtonUl();
 }
 
+
+function pageloadHandler() {
+  createTodoTask();
+}
+
+function createTodoTask() {
+  localStorage.setItem('todoTasks', JSON.stringify([]));
+}
 
 function generateCard(e) {
   e.preventDefault();
@@ -83,20 +92,25 @@ function clearButtonHandler(e) {
 
 function tentativeItemHandler(e) {
   e.preventDefault();
-  createTentativeItem(itemInput.value)
-  resetItemInput();
+  var itemId = addItemToArray();
+  createTentativeItem(itemInput.value, itemId)
+  resetInput();
   enableMakeButtonUl();
   disablePlusButton();
+
 } 
 
-function createTentativeItem(input) {
-  var tentativeItem = `<li class="tentative-item" id="tentative-item"> 
+
+
+function createTentativeItem(input, id) {
+  var tentativeItem = `<li class="tentative-item" id="tentative-item" data-id="${id}""> 
     <img src="images/delete.svg" class="delete-task"> ${input} </li>`
   tentativeItemList.insertAdjacentHTML('beforeend', tentativeItem)
 }
 
 function deleteTentativeItem(e) {
   if (e.target.classList.contains("delete-task")) {
+    deleteItemFromArray(e);
     var taskToDelete = e.target;
     taskToDelete.parentNode.remove();
     enableMakeButtonUl();
@@ -125,7 +139,34 @@ function disablePlusButton() {
 }
 
 
+function addItemToArray() {
+  var todoTasks = JSON.parse(localStorage.getItem('todoTasks'));
+  var text = itemInput.value;
+  var newTask = new TodoItems(text, Date.now());
+  todoTasks.push(newTask);
+  localStorage.setItem('todoTasks', JSON.stringify(todoTasks));
+  return newTask.id;
+}
 
+function deleteItemFromArray(e) {
+  if (e.target.className === 'delete-task'){
+    var todoTasks = JSON.parse(localStorage.getItem('todoTasks'));
+    var index = getTaskById(e, todoTasks);
+    todoTasks.splice(index, 1)
+    reinstantiateTodo(e).saveToStorage(todoTasks)
+    e.target.closest('.tentative-item').remove();
+  }
+}
 
+function getTaskById(e, array) {
+  var taskId = e.target.closest('.tentative-item').getAttribute('data-id');
+  var arrayId = array.findIndex(function(arrayObj){
+    return arrayObj.id == parseInt(taskId);
+});
+  return arrayId;
+};
 
-
+function reinstantiateTodo(e) {
+  var todoInstance = new TodoItems(e.target.closest('li').innerText, e.target.getAttribute('data-id'));
+  return todoInstance
+}

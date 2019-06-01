@@ -6,19 +6,39 @@ class ToDoList {
     this.tasks = tasksArray || [];
   }
 
-  saveToStorage(){
-    localStorage.setItem('taskListArray', JSON.stringify(taskListArray));
+  saveToStorage() {
+    localStorage.setItem('todoListArray', JSON.stringify(taskListArray));
   }
 
-  deleteFromStorage(){
-
-  }
-
-  updateToDo(){
+  deleteFromStorage() {
 
   }
 
-  updateTask(){
+  updateToDo() {
 
   }
+
+  updateTask() {
+
+  }
+}
+
+
+class TodoItems {
+  constructor(text, id) {
+    this.text = text;
+    this.checked = false;
+    this.id = id;
+  }
+
+  getFromStorage() {
+    var newtodoTasks = JSON.parse(localStorage.getItem('newtodoTasks'));
+    return newtodoTasks
+  }
+
+  saveToStorage(updatedArray) {
+    localStorage.setItem('todoTasks', JSON.stringify(updatedArray));
+
+  }
+
 }
