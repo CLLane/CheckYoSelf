@@ -6,7 +6,6 @@ var makeCardButton = document.querySelector('#make-button');
 var tentativeItemList = document.querySelector('#tentative-item-list')
 
 
-
 plusButton.addEventListener('click', tentativeItemHandler);
 makeCardButton.addEventListener('click', generateCard);
 titleInput.addEventListener('keyup', disableMakeButton)
@@ -35,17 +34,14 @@ function generateCard(e) {
   cardSection.insertAdjacentHTML('afterbegin', taskCard);
 };
 
-
 function disableMakeButton() {
   titleInput.value === '' || itemInput.value === '' ? makeCardButton.disabled = true: makeCardButton.disabled = false;  
 }
-
 
 function tentativeItemHandler(e) {
   e.preventDefault();
   createTentativeItem(itemInput.value)
 } 
-
 
 function createTentativeItem(input) {
   var tentativeItem = `<li class="tentative-item"> 
@@ -59,10 +55,4 @@ function deleteTentativeItem(e) {
     taskToDelete.parentNode.remove();
   }
 }
-
-
-
-
-
-
 
