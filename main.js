@@ -42,6 +42,8 @@ function createTodoTask() {
 }
 
 function makeCard(e) {
+  e.preventDefault();
+  // createTaskList();
   cardInstance(e);
   clearButtonHandler(e);
 }
@@ -64,16 +66,46 @@ function cardInstance(e) {
   cardsArray.push(taskCard);
   taskCard.saveToStorage(cardsArray);
   generateCard(e, taskCard)
-
 }
 
 
-function generateCard(taskObj) {
-  var taskCard = `<article class="todo-card">
-        <h2>Title</h2>
+function createToDoList() {
+  var tasksArray = JSON.parse(localStorage.getItem('todoListArray'));
+  var newList = new ToDoList(Date.now(), titleInput.value, tasksArray);
+  cardsArray.push(newList)
+  newList.saveToStorage()
+  generateCard(newList);
+}
+
+
+// function createTaskList(newTodoCard) {
+
+//   var listItems = `<ul>`   
+//   for (var i = 0; i < newTodoCard.tasks.length; i++){
+//     if (newTodoCard.tasks[i].checked === true) {
+//       listItems += `<li data-id="${newTodoCard.tasks[i].id}" class="checked">
+//       <img src="images/checkbox.svg" class="checkbox checked" >
+//       ${newTodoCard.tasks[i].body}
+//     </li>`
+//     } else {
+//       listItems += `<li data-id="${newTodoCard.tasks[i].id}">
+//         <img src="images/checkbox.svg" class="checkbox" >
+//         ${newTodoCard.tasks[i].body}
+//       </li>`
+//     }
+//   }
+//   return listItems
+// }
+
+
+function generateCard(newTodoCard) {
+  // console.log(newTodoCard);
+  // var cardItems = createTaskList(newTodoCard);
+  // console.log(cardItems)
+  var taskCard = `<article class="todo-card ${newTodoCard}">
+        <h2>${newTodoCard.title}</h2>
         <ul class="on-card-tasks">
-          <li>Task Item</li>
-          <li>Task Item</li>
+          
         </ul>
         <footer>
           <div class="card-image">
