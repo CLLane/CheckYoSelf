@@ -173,6 +173,7 @@ article {
   background-color: #FAFDFF;
   border-left: 2px solid #C7C3D8;
   border-right: 2px solid #C7C3D8;
+  margin-bottom: 30px;
   break-inside: avoid;
 }
 

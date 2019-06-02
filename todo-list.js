@@ -3,11 +3,11 @@ class ToDoList {
     this.id = id
     this.title = title
     this.urgent = false;
-    this.tasks = tasksArray || [];
+    this.tasksArray = tasksArray || [];
   }
 
-  saveToStorage() {
-    localStorage.setItem('todoListArray', JSON.stringify(taskListArray));
+  saveToStorage(array) {
+    localStorage.setItem('todoListArray', JSON.stringify(array));
   }
 
   deleteFromStorage() {
