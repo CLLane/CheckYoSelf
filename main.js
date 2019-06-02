@@ -6,12 +6,13 @@ var makeCardButton = document.querySelector('#make-button');
 var tentativeItemList = document.querySelector('#tentative-item-list')
 var cardsArray = [];
 var clearItemsButton = document.querySelector('#clear-button')
+
 pageloadHandler();
 
 
 cardSection.addEventListener('click', cardSectionHandler)
 plusButton.addEventListener('click', tentativeItemHandler);
-makeCardButton.addEventListener('click', generateCard);
+makeCardButton.addEventListener('click', makeCard);
 itemInput.addEventListener('keyup', disableButtonHelper)
 titleInput.addEventListener('keyup', makeCardButtonHelper)
 tentativeItemList.addEventListener('click', deleteTentativeItem)
@@ -23,17 +24,51 @@ function makeCardButtonHelper(e) {
  disableClearAll();
 }
 
+function populateCards() {
+  for (var i = 0; i < cardsArray.length; i++) {
+    generateCard(cardsArray[i]);
+  }
+}
 
 function pageloadHandler() {
+  checkArray(cardsArray);
+  populateCards();
   createTodoTask();
+
 }
 
 function createTodoTask() {
   localStorage.setItem('todoTasks', JSON.stringify([]));
 }
 
-function generateCard(e, title, tasks) {
+function makeCard(e) {
+  cardInstance(e);
+  clearButtonHandler(e);
+}
+
+function checkArray(array) {
+  if(JSON.parse(localStorage.getItem('todoListArray')) === null) {
+    return;
+  } else {
+    var newArray = JSON.parse(localStorage.getItem('todoListArray')).map(function(array) {
+      return new ToDoList(Date.now(), titleInput.value, newArray);
+    });
+    cardsArray = newArray;
+  }
+}
+
+function cardInstance(e) {
   e.preventDefault();
+  var todoTasks = JSON.parse(localStorage.getItem('todoTasks'));
+  var taskCard = new ToDoList(Date.now(), titleInput.value, todoTasks);
+  cardsArray.push(taskCard);
+  taskCard.saveToStorage(cardsArray);
+  generateCard(e, taskCard)
+
+}
+
+
+function generateCard(taskObj) {
   var taskCard = `<article class="todo-card">
         <h2>Title</h2>
         <ul class="on-card-tasks">
@@ -52,7 +87,6 @@ function generateCard(e, title, tasks) {
         </footer>
       </article>`
   cardSection.insertAdjacentHTML('afterbegin', taskCard);
-  clearButtonHandler(e);
 };
 
 function disableMakeButton() {
@@ -60,7 +94,7 @@ function disableMakeButton() {
 }
 
 function disableClearAll() {
-  titleInput.value === '' || itemInput.value === '' ? clearItemsButton.disabled = true: clearItemsButton.disabled = false;
+  titleInput.value === '' && itemInput.value === '' ? clearItemsButton.disabled = true: clearItemsButton.disabled = false;
 }
 
 
@@ -178,3 +212,4 @@ function reinstantiateTodo(e) {
   var todoInstance = new TodoItems(e.target.closest('li').innerText, e.target.getAttribute('data-id'));
   return todoInstance
 }
+
