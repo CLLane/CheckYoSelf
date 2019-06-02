@@ -6,7 +6,6 @@ var makeCardButton = document.querySelector('#make-button');
 var tentativeItemList = document.querySelector('#tentative-item-list')
 var cardsArray = [];
 var clearItemsButton = document.querySelector('#clear-button')
-
 pageloadHandler();
 
 
@@ -34,6 +33,7 @@ function pageloadHandler() {
   checkArray(cardsArray);
   populateCards();
   createTodoTask();
+  noTaskPrompt();
 
 }
 
@@ -46,6 +46,7 @@ function makeCard(e) {
   // createTaskList();
   cardInstance(e);
   clearButtonHandler(e);
+  noTaskPrompt();
 }
 
 function checkArray(array) {
@@ -192,14 +193,15 @@ function deleteTentativeItem(e) {
 
 function cardSectionHandler(e) {
   deleteTodoCard(e);
+  noTaskPrompt();
 }
 
 function deleteTodoCard(e) {
   if (e.target.classList.contains('delete-card')) {
     var taskToDelete = e.target;
     e.target.closest('.todo-card').remove();
-
   }
+  noTaskPrompt();
 }
 
 function disableButtonHelper (e) {
@@ -245,3 +247,13 @@ function reinstantiateTodo(e) {
   return todoInstance
 }
 
+function noTaskPrompt() {
+var prompt = document.querySelector('#no-task')
+if(cardSection.contains(prompt) && cardsArray.length > 0) {
+  cardSection.removeChild(prompt);
+}
+if(prompt === undefined && cardsArray < 1) {
+  var taskPrompt = `<p class="no-task hidden" id="no-task">No Currently Open Task</p>`
+  cardSection.insertAdjacentHTML('afterbegin', taskPrompt);
+}
+}
