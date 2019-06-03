@@ -6,7 +6,7 @@ var makeCardButton = document.querySelector('#make-button');
 var tentativeItemList = document.querySelector('#tentative-item-list')
 var cardsArray = [];
 var clearItemsButton = document.querySelector('#clear-button')
-var searchBar = document.querySelector('#search-bar')
+var searchBar = document.querySelector('#search-input')
 
 pageloadHandler();
 
@@ -20,9 +20,9 @@ clearItemsButton.addEventListener('click', clearButtonHandler);
 searchBar.addEventListener('keyup', searchFunction);
 
 
-function populateCards() {
-  for (var i = 0; i < cardsArray.length; i++) {
-    generateCard(cardsArray[i]);
+function populateCards(array) {
+  for (var i = 0; i < array.length; i++) {
+    generateCard(array[i]);
   }
 }
 
@@ -59,7 +59,7 @@ function makeCard(e) {
 function pageloadHandler() {
     cardsArray = JSON.parse(localStorage.getItem('todoListArray')) || [];
     instantiateCards();
-    populateCards();
+    populateCards(cardsArray);
     noTaskPrompt();
 }
 
@@ -203,7 +203,6 @@ function reinstantiateTodo(e) {
 
 function instantiateCards() {
   if (cardsArray.length > 0) {
-  // if (JSON.parse(localStorage.getItem('todoListArray')) !== null){
     var reinstantiatedArray = JSON.parse(localStorage.getItem('todoListArray')).map(function(listObject){
       return new ToDoList(listObject.id, listObject.title, listObject.tasksArray, listObject.urgent)
     })
@@ -318,11 +317,9 @@ function enableDeleteButton(e) {
   var newArray = deleteObj.filter(function(itemObj){
     return itemObj.checked === true;
   });
-  console.log('newArray:',newArray)
   if (newArray.length === deleteObj.length){
     deleteTodoCard(e);
   } else {
-    console.log('else')
     
   }
 }
@@ -330,3 +327,36 @@ function enableDeleteButton(e) {
 
 // ------Search Function----------\\
 
+
+function searchFunction(arrayName) {
+  // var searchArray = getDomArray();
+  var newArray = generateSearchResultsArray(cardsArray, searchBar.value);
+  cardSection.innerHTML = ''
+  populateCards(newArray);
+  if (searchBar.value === '' || null) {
+    repopulateAfterEmptySearch();
+  }
+}
+
+function repopulateAfterEmptySearch(){
+  cardSection.innerText = '';
+  populateCards(cardsArray);
+}
+
+function getDomArray() {
+  var domArray = cardSection.querySelectorAll('article');
+  var idsArray = Array.from(domArray).map(function(article){
+    return parseInt(article.getAttribute('data-id'));
+  })
+  var searchArray = ideasArray.filter(function(ideaObject) {
+    return idsArray.includes(ideaObject.id);
+  })
+  return searchArray;
+}
+
+function generateSearchResultsArray(array, searchWords){
+  var searchResultsArray = array.filter(function(arrayObject){
+  return arrayObject.title.includes(searchWords) === true;
+  });
+  return searchResultsArray;
+}
