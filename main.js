@@ -6,6 +6,7 @@ var makeCardButton = document.querySelector('#make-button');
 var tentativeItemList = document.querySelector('#tentative-item-list')
 var cardsArray = [];
 var clearItemsButton = document.querySelector('#clear-button')
+var searchBar = document.querySelector('#search-bar')
 
 pageloadHandler();
 
@@ -16,6 +17,8 @@ itemInput.addEventListener('keyup', disableButtonHelper);
 titleInput.addEventListener('keyup', makeCardButtonHelper);
 tentativeItemList.addEventListener('click', deleteTentativeItem);
 clearItemsButton.addEventListener('click', clearButtonHandler);
+searchBar.addEventListener('keyup', searchFunction);
+
 
 function populateCards() {
   for (var i = 0; i < cardsArray.length; i++) {
@@ -61,7 +64,7 @@ function pageloadHandler() {
 }
 
 function cardSectionHandler(e) {
-  deleteTodoCard(e);
+  enableDeleteButton(e);
   urgentToggle(e);
   checkTasks(e);
   noTaskPrompt();
@@ -245,7 +248,7 @@ function generateCard(newTodoCard) {
         <p>URGENT</p>
         </div>
         <div class="card-image">
-        <img src="images/delete.svg" class="delete-card">
+        <img src="images/delete.svg" class="delete-card" disable>
         <p>DELETE</p>
         </div>
         </footer>
@@ -302,3 +305,28 @@ function checkedOrNot(array) {
     return 'checked'
   }
 }
+
+
+
+
+
+//Enable/Disable delete button on card//
+
+function enableDeleteButton(e) {
+  var index = getCardById(e, cardsArray);
+  var deleteObj = cardsArray[index].tasksArray;
+  var newArray = deleteObj.filter(function(itemObj){
+    return itemObj.checked === true;
+  });
+  console.log('newArray:',newArray)
+  if (newArray.length === deleteObj.length){
+    deleteTodoCard(e);
+  } else {
+    console.log('else')
+    
+  }
+}
+
+
+// ------Search Function----------\\
+
