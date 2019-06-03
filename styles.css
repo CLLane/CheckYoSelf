@@ -251,3 +251,21 @@ ul {
 .unchecked {
   height: 25px;
 }
+
+/*-----------Urgent Card-----------*/
+
+.urgent {
+  background-color: #FFE89D;
+  border-left: 2px solid #FFC30C;
+  border-right: 2px solid #FFC30C;
+}
+
+.urgent footer {
+  border-top: 2px solid #FFC30C;
+  border-bottom: 2px solid #FFC30C;
+}
+
+.urgent h2 {
+  border-bottom: 2px solid #FFC30C;
+  border-top: 2px solid #FFC30C;
+}
