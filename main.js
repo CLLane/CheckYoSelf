@@ -130,13 +130,13 @@ function deleteTentativeItem(e) {
 
 function cardSectionHandler(e) {
   deleteTodoCard(e);
+  urgentToggle(e)
   noTaskPrompt();
 }
 
 function deleteTodoCard(e) {
   if (e.target.classList.contains('delete-card')) {
     var index = getCardById(e, cardsArray)
-    console.log(index)
     cardsArray[index].deleteFromStorage(index)
     e.target.closest('.todo-card').remove();
   }
@@ -250,3 +250,16 @@ function generateCard(newTodoCard) {
         cardSection.insertAdjacentHTML('afterbegin', taskCard);
 
 };
+
+
+function urgentToggle(e) {
+  if (e.target.classList.contains('urgent-card')) {
+    urgentCardChange(e);
+    var index = getCardById(e, cardsArray)
+
+  }
+
+function urgentCardChange(e) {
+  e.target.closest('article').classList.toggle('urgent')
+}
+}
