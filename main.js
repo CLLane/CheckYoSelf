@@ -222,7 +222,8 @@ if(prompt === undefined && cardsArray < 1) {
   function createTaskList(array) {
     var listItems = ``;
     for(var i = 0; i < array.length; i++) {
-      listItems += `<li data-id="${array[i].id}"><img src="images/checkbox.svg" class="unchecked">
+    var checked = checkedOrNot(array[i]);
+      listItems += `<li data-id="${array[i].id}" class="${checked}"><img src="images/checkbox.svg" class="unchecked">
         ${array[i].text}
       </li>`
     }
@@ -295,4 +296,9 @@ function checkedCheck(e) {
  cardsArray[index].updateTask(taskIndex);
 }
 
-
+function checkedOrNot(array) {
+  if(array.checked === true){
+    console.log('hey checked')
+    return 'checked'
+  }
+}
