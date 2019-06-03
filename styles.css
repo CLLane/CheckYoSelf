@@ -278,3 +278,11 @@ ul {
 
 /*--------Check List-------*/
 
+.checked img.unchecked {
+  content: url('images/checkbox-active.svg');
+}
+
+.checked {
+  color: #3C6577;
+  font-style: italic;
+}

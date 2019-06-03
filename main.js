@@ -60,6 +60,13 @@ function pageloadHandler() {
     noTaskPrompt();
 }
 
+function cardSectionHandler(e) {
+  deleteTodoCard(e);
+  urgentToggle(e);
+  checkTasks(e);
+  noTaskPrompt();
+}
+
 function disableMakeButton() {
   titleInput.value === '' || itemInput.value === '' ? makeCardButton.disabled = true: makeCardButton.disabled = false;  
 }
@@ -128,11 +135,6 @@ function deleteTentativeItem(e) {
   }
 }
 
-function cardSectionHandler(e) {
-  deleteTodoCard(e);
-  urgentToggle(e)
-  noTaskPrompt();
-}
 
 function deleteTodoCard(e) {
   if (e.target.classList.contains('delete-card')) {
@@ -221,6 +223,7 @@ if(prompt === undefined && cardsArray < 1) {
   function createTaskList(array) {
     var listItems = ``;
     for(var i = 0; i < array.length; i++) {
+    var checked = checkedCheck(i)
       listItems += `<li><img src="images/checkbox.svg" class="unchecked">
         ${array[i].text}
       </li>`
@@ -231,7 +234,6 @@ if(prompt === undefined && cardsArray < 1) {
 function generateCard(newTodoCard) {
   var cardItems = createTaskList(newTodoCard.tasksArray);
   var currentList = JSON.parse(localStorage.getItem('todoListArray'))
-  // var urgentCardStatus = newTodoCard.urgent ? "images/urgent-active.svg": "images/urgent.svg";
   var urgent = urgentCheck(newTodoCard);
   var taskCard = `<article class="todo-card ${urgent}" id="todo-card" data-id="${newTodoCard.id}">
     <h2>${newTodoCard.title}</h2>
@@ -278,4 +280,12 @@ function checkTasks(e) {
   if(e.target.classList.contains('unchecked')) {
     checkTasksChange(e);
   }
+}
+
+function checkTasksChange(e) {
+  e.target.closest('li').classList.toggle('checked')
+}
+
+function checkedCheck(array) {
+  if(array.contains('unchecked')
 }
