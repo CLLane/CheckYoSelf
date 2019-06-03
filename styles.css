@@ -243,3 +243,11 @@ ul {
 .title-form {
   margin-bottom: 10px;
 }
+
+.on-card-tasks {
+  min-height: 161px;
+}
+
+.unchecked {
+  height: 25px;
+}
