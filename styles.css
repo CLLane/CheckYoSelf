@@ -164,6 +164,10 @@ label {
   background-color: #C7C3D8;
   border: 2px solid #1F1F3D;
 }
+.delete-card:disabled {
+  color: #F3F6F7;
+  opacity: 0;
+}
 
 article {
   width: 100%;
@@ -278,3 +282,11 @@ ul {
 
 /*--------Check List-------*/
 
+.checked img.unchecked {
+  content: url('images/checkbox-active.svg');
+}
+
+.checked {
+  color: #3C6577;
+  font-style: italic;
+}

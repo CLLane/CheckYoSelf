@@ -6,6 +6,7 @@ var makeCardButton = document.querySelector('#make-button');
 var tentativeItemList = document.querySelector('#tentative-item-list')
 var cardsArray = [];
 var clearItemsButton = document.querySelector('#clear-button')
+var searchBar = document.querySelector('#search-input')
 
 pageloadHandler();
 
@@ -16,10 +17,12 @@ itemInput.addEventListener('keyup', disableButtonHelper);
 titleInput.addEventListener('keyup', makeCardButtonHelper);
 tentativeItemList.addEventListener('click', deleteTentativeItem);
 clearItemsButton.addEventListener('click', clearButtonHandler);
+searchBar.addEventListener('keyup', searchFunction);
 
-function populateCards() {
-  for (var i = 0; i < cardsArray.length; i++) {
-    generateCard(cardsArray[i]);
+
+function populateCards(array) {
+  for (var i = 0; i < array.length; i++) {
+    generateCard(array[i]);
   }
 }
 
@@ -56,8 +59,15 @@ function makeCard(e) {
 function pageloadHandler() {
     cardsArray = JSON.parse(localStorage.getItem('todoListArray')) || [];
     instantiateCards();
-    populateCards();
+    populateCards(cardsArray);
     noTaskPrompt();
+}
+
+function cardSectionHandler(e) {
+  enableDeleteButton(e);
+  urgentToggle(e);
+  checkTasks(e);
+  noTaskPrompt();
 }
 
 function disableMakeButton() {
@@ -128,11 +138,6 @@ function deleteTentativeItem(e) {
   }
 }
 
-function cardSectionHandler(e) {
-  deleteTodoCard(e);
-  urgentToggle(e)
-  noTaskPrompt();
-}
 
 function deleteTodoCard(e) {
   if (e.target.classList.contains('delete-card')) {
@@ -198,11 +203,9 @@ function reinstantiateTodo(e) {
 
 function instantiateCards() {
   if (cardsArray.length > 0) {
-  // if (JSON.parse(localStorage.getItem('todoListArray')) !== null){
     var reinstantiatedArray = JSON.parse(localStorage.getItem('todoListArray')).map(function(listObject){
       return new ToDoList(listObject.id, listObject.title, listObject.tasksArray, listObject.urgent)
     })
-    console.log('reinstantiatedArray:', reinstantiatedArray);
     cardsArray = reinstantiatedArray
   }
 }
@@ -221,7 +224,8 @@ if(prompt === undefined && cardsArray < 1) {
   function createTaskList(array) {
     var listItems = ``;
     for(var i = 0; i < array.length; i++) {
-      listItems += `<li><img src="images/checkbox.svg" class="unchecked">
+    var checked = checkedOrNot(array[i]);
+      listItems += `<li data-id="${array[i].id}" class="${checked}"><img src="images/checkbox.svg" class="unchecked">
         ${array[i].text}
       </li>`
     }
@@ -231,7 +235,6 @@ if(prompt === undefined && cardsArray < 1) {
 function generateCard(newTodoCard) {
   var cardItems = createTaskList(newTodoCard.tasksArray);
   var currentList = JSON.parse(localStorage.getItem('todoListArray'))
-  // var urgentCardStatus = newTodoCard.urgent ? "images/urgent-active.svg": "images/urgent.svg";
   var urgent = urgentCheck(newTodoCard);
   var taskCard = `<article class="todo-card ${urgent}" id="todo-card" data-id="${newTodoCard.id}">
     <h2>${newTodoCard.title}</h2>
@@ -244,7 +247,7 @@ function generateCard(newTodoCard) {
         <p>URGENT</p>
         </div>
         <div class="card-image">
-        <img src="images/delete.svg" class="delete-card">
+        <img src="images/delete.svg" class="delete-card" disable>
         <p>DELETE</p>
         </div>
         </footer>
@@ -277,5 +280,83 @@ function urgentCheck(newTodoCard) {
 function checkTasks(e) {
   if(e.target.classList.contains('unchecked')) {
     checkTasksChange(e);
+    checkedCheck(e);
   }
+}
+
+function checkTasksChange(e) {
+  e.target.closest('li').classList.toggle('checked')
+}
+
+function checkedCheck(e) {
+ var index = getCardById(e, cardsArray);
+ var taskObj = cardsArray[index].tasksArray
+ var taskId = e.target.closest('li').getAttribute('data-id')
+ var taskIndex = taskObj.findIndex(function(itemObj){
+  return itemObj.id == parseInt(taskId);
+ });
+ cardsArray[index].updateTask(taskIndex);
+}
+
+function checkedOrNot(array) {
+  if(array.checked === true){
+    console.log('hey checked')
+    return 'checked'
+  }
+}
+
+
+
+
+
+//Enable/Disable delete button on card//
+
+function enableDeleteButton(e) {
+  var index = getCardById(e, cardsArray);
+  var deleteObj = cardsArray[index].tasksArray;
+  var newArray = deleteObj.filter(function(itemObj){
+    return itemObj.checked === true;
+  });
+  if (newArray.length === deleteObj.length){
+    deleteTodoCard(e);
+  } else {
+    
+  }
+}
+
+
+// ------Search Function----------\\
+
+
+function searchFunction(arrayName) {
+  // var searchArray = getDomArray();
+  var newArray = generateSearchResultsArray(cardsArray, searchBar.value);
+  cardSection.innerHTML = ''
+  populateCards(newArray);
+  if (searchBar.value === '' || null) {
+    repopulateAfterEmptySearch();
+  }
+}
+
+function repopulateAfterEmptySearch(){
+  cardSection.innerText = '';
+  populateCards(cardsArray);
+}
+
+function getDomArray() {
+  var domArray = cardSection.querySelectorAll('article');
+  var idsArray = Array.from(domArray).map(function(article){
+    return parseInt(article.getAttribute('data-id'));
+  })
+  var searchArray = ideasArray.filter(function(ideaObject) {
+    return idsArray.includes(ideaObject.id);
+  })
+  return searchArray;
+}
+
+function generateSearchResultsArray(array, searchWords){
+  var searchResultsArray = array.filter(function(arrayObject){
+  return arrayObject.title.includes(searchWords) === true;
+  });
+  return searchResultsArray;
 }
