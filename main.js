@@ -230,9 +230,10 @@ if(prompt === undefined && cardsArray < 1) {
 
 function generateCard(newTodoCard) {
   var cardItems = createTaskList(newTodoCard.tasksArray);
-  let currentList = JSON.parse(localStorage.getItem('todoListArray'))
-
-    var taskCard = `<article class="todo-card" id="todo-card" data-id="${newTodoCard.id}">
+  var currentList = JSON.parse(localStorage.getItem('todoListArray'))
+  // var urgentCardStatus = newTodoCard.urgent ? "images/urgent-active.svg": "images/urgent.svg";
+  var urgent = urgentCheck(newTodoCard);
+  var taskCard = `<article class="todo-card ${urgent}" id="todo-card" data-id="${newTodoCard.id}">
     <h2>${newTodoCard.title}</h2>
         <ul class="on-card-tasks on-card-tasks-${newTodoCard.id}">
         ${cardItems}
@@ -257,7 +258,6 @@ function urgentToggle(e) {
   if (e.target.classList.contains('urgent-card')) {
     urgentCardChange(e);
     var index = getCardById(e, cardsArray)
-    console.log('index:', index);
     cardsArray[index].updateToDo(cardsArray);
     instantiateCards();
   }
@@ -265,4 +265,17 @@ function urgentToggle(e) {
 
 function urgentCardChange(e) {
   e.target.closest('article').classList.toggle('urgent')
+}
+
+function urgentCheck(newTodoCard) {
+  if (newTodoCard.urgent) {
+    return 'urgent'
+  }
+}
+
+
+function checkTasks(e) {
+  if(e.target.classList.contains('unchecked')) {
+    checkTasksChange(e);
+  }
 }
