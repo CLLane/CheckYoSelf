@@ -164,10 +164,7 @@ label {
   background-color: #C7C3D8;
   border: 2px solid #1F1F3D;
 }
-.delete-card:disabled {
-  color: #F3F6F7;
-  opacity: 0;
-}
+
 
 article {
   width: 100%;
@@ -254,6 +251,13 @@ ul {
 
 .unchecked {
   height: 25px;
+}
+
+.no-task {
+      color: #3C6577;
+    font-size: 4em;
+    font-weight: 800;
+    text-align: center;
 }
 
 /*-----------Urgent Card-----------*/

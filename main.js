@@ -300,7 +300,6 @@ function checkedCheck(e) {
 
 function checkedOrNot(array) {
   if(array.checked === true){
-    console.log('hey checked')
     return 'checked'
   }
 }
@@ -319,11 +318,8 @@ function enableDeleteButton(e) {
   });
   if (newArray.length === deleteObj.length){
     deleteTodoCard(e);
-  } else {
-    
-  }
+  } 
 }
-
 
 // ------Search Function----------\\
 
