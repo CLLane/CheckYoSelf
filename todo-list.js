@@ -10,8 +10,10 @@ class ToDoList {
     localStorage.setItem('todoListArray', JSON.stringify(array));
   }
 
-  deleteFromStorage() {
-
+  deleteFromStorage(index) {
+   cardsArray.splice(index, 1);
+   console.log(index)
+   this.saveToStorage(cardsArray);
   }
 
   updateToDo() {
@@ -20,10 +22,6 @@ class ToDoList {
 
   updateTask() {
 
-  }
-
-  addTask(addedtask) {
-    this.tasksArray.push(addedtask)
   }
 }
 
