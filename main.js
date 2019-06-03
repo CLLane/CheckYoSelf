@@ -204,7 +204,6 @@ function instantiateCards() {
     var reinstantiatedArray = JSON.parse(localStorage.getItem('todoListArray')).map(function(listObject){
       return new ToDoList(listObject.id, listObject.title, listObject.tasksArray, listObject.urgent)
     })
-    console.log('reinstantiatedArray:', reinstantiatedArray);
     cardsArray = reinstantiatedArray
   }
 }
@@ -223,8 +222,7 @@ if(prompt === undefined && cardsArray < 1) {
   function createTaskList(array) {
     var listItems = ``;
     for(var i = 0; i < array.length; i++) {
-    var checked = checkedCheck(i)
-      listItems += `<li><img src="images/checkbox.svg" class="unchecked">
+      listItems += `<li data-id="${array[i].id}"><img src="images/checkbox.svg" class="unchecked">
         ${array[i].text}
       </li>`
     }
@@ -279,6 +277,7 @@ function urgentCheck(newTodoCard) {
 function checkTasks(e) {
   if(e.target.classList.contains('unchecked')) {
     checkTasksChange(e);
+    checkedCheck(e);
   }
 }
 
@@ -286,6 +285,14 @@ function checkTasksChange(e) {
   e.target.closest('li').classList.toggle('checked')
 }
 
-function checkedCheck(array) {
-  if(array.contains('unchecked')
+function checkedCheck(e) {
+ var index = getCardById(e, cardsArray);
+ var taskObj = cardsArray[index].tasksArray
+ var taskId = e.target.closest('li').getAttribute('data-id')
+ var taskIndex = taskObj.findIndex(function(itemObj){
+  return itemObj.id == parseInt(taskId);
+ });
+ cardsArray[index].updateTask(taskIndex);
 }
+
+

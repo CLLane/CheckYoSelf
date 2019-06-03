@@ -17,32 +17,31 @@ class ToDoList {
   }
 
   updateToDo(array) {
-  console.log('urgent:', this.urgent)
   this.urgent = !this.urgent;
-  console.log('urgent:', this.urgent)
   this.saveToStorage(array);
   }
 
-  updateTask() {
-
+  updateTask(index) {
+  this.tasksArray[index].checked = !this.tasksArray[index].checked
+  this.saveToStorage(cardsArray)
   }
 }
 
-class TodoItems {
-  constructor(text, id) {
-    this.text = text;
-    this.checked = false;
-    this.id = id;
-  }
+// class TodoItems {
+//   constructor(text, id) {
+//     this.text = text;
+//     this.checked = false;
+//     this.id = id;
+//   }
 
-  getFromStorage() {
-    var newtodoTasks = JSON.parse(localStorage.getItem('newtodoTasks'));
-    return newtodoTasks
-  }
+//   getFromStorage() {
+//     var newtodoTasks = JSON.parse(localStorage.getItem('newtodoTasks'));
+//     return newtodoTasks
+//   }
 
-  saveToStorage(updatedArray) {
-    localStorage.setItem('todoTasks', JSON.stringify(updatedArray));
+//   saveToStorage(updatedArray) {
+//     localStorage.setItem('todoTasks', JSON.stringify(updatedArray));
 
-  }
+//   }
 
-}
+// }
