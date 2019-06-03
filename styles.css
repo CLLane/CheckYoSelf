@@ -269,3 +269,8 @@ ul {
   border-bottom: 2px solid #FFC30C;
   border-top: 2px solid #FFC30C;
 }
+
+.urgent img.urgent-card {
+  content: url('images/urgent-active.svg');
+} 
+
