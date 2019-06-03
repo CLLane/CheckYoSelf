@@ -145,11 +145,10 @@ function deleteTodoCard(e) {
 
 function getCardById(e, array) {
   var cardId = e.target.closest('article').getAttribute('data-id');
-  console.log('cardId:', cardId)
-  var arrayId = array.findIndex(function(arrayObj){
-    return arrayObj.id == parseInt(cardId);
+  var arrayIndex = array.findIndex(function(arrayObj){
+    return arrayObj.id === parseInt(cardId);
 });
-  return arrayId;
+  return arrayIndex;
 };
 
 function disableButtonHelper (e) {
@@ -186,10 +185,10 @@ function deleteItemFromArray(e) {
 
 function getTaskById(e, array) {
   var taskId = e.target.closest('.tentative-item').getAttribute('data-id');
-  var arrayId = array.findIndex(function(arrayObj){
+  var arrayIndex = array.findIndex(function(arrayObj){
     return arrayObj.id == parseInt(taskId);
 });
-  return arrayId;
+  return arrayIndex;
 };
 
 function reinstantiateTodo(e) {
@@ -198,10 +197,12 @@ function reinstantiateTodo(e) {
 }
 
 function instantiateCards() {
-  if (JSON.parse(localStorage.getItem('todoListArray')) !== null){
+  if (cardsArray.length > 0) {
+  // if (JSON.parse(localStorage.getItem('todoListArray')) !== null){
     var reinstantiatedArray = JSON.parse(localStorage.getItem('todoListArray')).map(function(listObject){
-      return new ToDoList(listObject.id, listObject.title, listObject.tasks)
+      return new ToDoList(listObject.id, listObject.title, listObject.tasksArray, listObject.urgent)
     })
+    console.log('reinstantiatedArray:', reinstantiatedArray);
     cardsArray = reinstantiatedArray
   }
 }
@@ -256,10 +257,12 @@ function urgentToggle(e) {
   if (e.target.classList.contains('urgent-card')) {
     urgentCardChange(e);
     var index = getCardById(e, cardsArray)
-
+    console.log('index:', index);
+    cardsArray[index].updateToDo(cardsArray);
+    instantiateCards();
   }
+}
 
 function urgentCardChange(e) {
   e.target.closest('article').classList.toggle('urgent')
-}
 }

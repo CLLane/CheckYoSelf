@@ -1,30 +1,32 @@
 class ToDoList {
-  constructor(id, title, tasksArray){
+  constructor(id, title, tasksArray, urgent){
     this.id = id;
     this.title = title;
-    this.urgent = false;
+    this.urgent = urgent || false;
     this.tasksArray = tasksArray || [];
   }
 
   saveToStorage(array) {
+    console.log('hey');
     localStorage.setItem('todoListArray', JSON.stringify(array));
   }
 
   deleteFromStorage(index) {
    cardsArray.splice(index, 1);
-   console.log(index)
-   this.saveToStorage(cardsArray);
+    this.saveToStorage(cardsArray);
   }
 
-  updateToDo() {
-
+  updateToDo(array) {
+  console.log('urgent:', this.urgent)
+  this.urgent = !this.urgent;
+  console.log('urgent:', this.urgent)
+  this.saveToStorage(array);
   }
 
   updateTask() {
 
   }
 }
-
 
 class TodoItems {
   constructor(text, id) {
