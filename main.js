@@ -7,6 +7,7 @@ var tentativeItemList = document.querySelector('#tentative-item-list')
 var cardsArray = [];
 var clearItemsButton = document.querySelector('#clear-button')
 var searchBar = document.querySelector('#search-input')
+var filterUrgentButton = document.querySelector('#filter-button')
 
 pageloadHandler();
 
@@ -18,6 +19,7 @@ titleInput.addEventListener('keyup', makeCardButtonHelper);
 tentativeItemList.addEventListener('click', deleteTentativeItem);
 clearItemsButton.addEventListener('click', clearButtonHandler);
 searchBar.addEventListener('keyup', searchFunction);
+filterUrgent.addEventListener('click', )
 
 
 function populateCards(array) {
@@ -325,7 +327,6 @@ function enableDeleteButton(e) {
 
 
 function searchFunction(arrayName) {
-  // var searchArray = getDomArray();
   var newArray = generateSearchResultsArray(cardsArray, searchBar.value);
   cardSection.innerHTML = ''
   populateCards(newArray);
@@ -356,3 +357,5 @@ function generateSearchResultsArray(array, searchWords){
   });
   return searchResultsArray;
 }
+
+// -----------Filter Urgent----------
