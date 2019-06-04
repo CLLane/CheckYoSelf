@@ -7,6 +7,7 @@ var tentativeItemList = document.querySelector('#tentative-item-list')
 var cardsArray = [];
 var clearItemsButton = document.querySelector('#clear-button')
 var searchBar = document.querySelector('#search-input')
+var filterUrgentButton = document.querySelector('#filter-button')
 
 pageloadHandler();
 
@@ -18,6 +19,7 @@ titleInput.addEventListener('keyup', makeCardButtonHelper);
 tentativeItemList.addEventListener('click', deleteTentativeItem);
 clearItemsButton.addEventListener('click', clearButtonHandler);
 searchBar.addEventListener('keyup', searchFunction);
+filterUrgentButton.addEventListener('click', filterUrgentHandler)
 
 
 function populateCards(array) {
@@ -300,7 +302,6 @@ function checkedCheck(e) {
 
 function checkedOrNot(array) {
   if(array.checked === true){
-    console.log('hey checked')
     return 'checked'
   }
 }
@@ -319,17 +320,13 @@ function enableDeleteButton(e) {
   });
   if (newArray.length === deleteObj.length){
     deleteTodoCard(e);
-  } else {
-    
-  }
+  } 
 }
-
 
 // ------Search Function----------\\
 
 
 function searchFunction(arrayName) {
-  // var searchArray = getDomArray();
   var newArray = generateSearchResultsArray(cardsArray, searchBar.value);
   cardSection.innerHTML = ''
   populateCards(newArray);
@@ -359,4 +356,35 @@ function generateSearchResultsArray(array, searchWords){
   return arrayObject.title.includes(searchWords) === true;
   });
   return searchResultsArray;
+}
+
+// -----------Filter Urgent----------
+
+function filterUrgentHandler() {
+  cardSection.innerHTML = '';
+  filterButtonStyle();
+  populateUrgentCards();
+}
+
+function filterButtonStyle() {
+  filterUrgentButton.classList.toggle('active');
+  filterUrgentButton.clicked = !filterUrgentButton.clicked;
+}
+
+function populateUrgentCards(){
+    if (filterUrgentButton.clicked === true){
+    var urgent = urgentArray();
+    populateCards(urgent)
+  }
+   else {
+    populateCards(cardsArray)
+  }
+  
+}
+
+function urgentArray(){
+  var urgentArray = cardsArray.filter(function(arrayObj){
+    return arrayObj.urgent === true;
+  })
+  return urgentArray;
 }
