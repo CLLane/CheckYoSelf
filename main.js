@@ -169,7 +169,7 @@ function disablePlusButton() {
 }
 
 function addItemToArray() {
-  let todoTasks = [];
+  var todoTasks = [];
   var text = itemInput.value;
   var newTask = new TodoItems(text, Date.now());
   if (localStorage.getItem('todoTasks')) {
@@ -327,31 +327,36 @@ function enableDeleteButton(e) {
 
 
 function searchFunction(arrayName) {
-  var newArray = generateSearchResultsArray(cardsArray, searchBar.value);
+  if (searchBar.value === '' || null) {
+    emptySearchPopulation();
+  }
+  if (filterUrgentButton.clicked === true) {
+    cardSection.innerHTML = '';
+    populateCards(searchArray(urgentArray(), searchBar.value));
+} else {
+  var newArray = searchArray(cardsArray, searchBar.value);
   cardSection.innerHTML = ''
   populateCards(newArray);
-  if (searchBar.value === '' || null) {
-    repopulateAfterEmptySearch();
-  }
+}
 }
 
-function repopulateAfterEmptySearch(){
+function emptySearchPopulation(){
   cardSection.innerText = '';
   populateCards(cardsArray);
 }
 
-function getDomArray() {
-  var domArray = cardSection.querySelectorAll('article');
-  var idsArray = Array.from(domArray).map(function(article){
-    return parseInt(article.getAttribute('data-id'));
-  })
-  var searchArray = ideasArray.filter(function(ideaObject) {
-    return idsArray.includes(ideaObject.id);
-  })
-  return searchArray;
-}
+// function getDomArray() {
+//   var domArray = cardSection.querySelectorAll('article');
+//   var idsArray = Array.from(domArray).map(function(article){
+//     return parseInt(article.getAttribute('data-id'));
+//   })
+//   var searchArray = ideasArray.filter(function(ideaObject) {
+//     return idsArray.includes(ideaObject.id);
+//   })
+//   return searchArray;
+// }
 
-function generateSearchResultsArray(array, searchWords){
+function searchArray(array, searchWords){
   var searchResultsArray = array.filter(function(arrayObject){
   return arrayObject.title.includes(searchWords) === true;
   });
@@ -362,16 +367,16 @@ function generateSearchResultsArray(array, searchWords){
 
 function filterUrgentHandler() {
   cardSection.innerHTML = '';
-  filterButtonStyle();
-  populateUrgentCards();
+  urgentButtonStyle();
+  urgentCardsArray();
 }
 
-function filterButtonStyle() {
+function urgentButtonStyle() {
   filterUrgentButton.classList.toggle('active');
   filterUrgentButton.clicked = !filterUrgentButton.clicked;
 }
 
-function populateUrgentCards(){
+function urgentCardsArray(){
     if (filterUrgentButton.clicked === true){
     var urgent = urgentArray();
     populateCards(urgent)
@@ -379,7 +384,6 @@ function populateUrgentCards(){
    else {
     populateCards(cardsArray)
   }
-  
 }
 
 function urgentArray(){
