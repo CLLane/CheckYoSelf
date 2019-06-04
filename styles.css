@@ -294,3 +294,11 @@ ul {
   color: #3C6577;
   font-style: italic;
 }
+
+/*-----------Filter Urgent--------*/
+
+.active {
+  background-color: #EF4A23;
+  border:2px solid #782616;
+  color: #FFFFFF;
+}

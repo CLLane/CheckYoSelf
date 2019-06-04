@@ -19,7 +19,7 @@ titleInput.addEventListener('keyup', makeCardButtonHelper);
 tentativeItemList.addEventListener('click', deleteTentativeItem);
 clearItemsButton.addEventListener('click', clearButtonHandler);
 searchBar.addEventListener('keyup', searchFunction);
-filterUrgent.addEventListener('click', )
+filterUrgentButton.addEventListener('click', filterUrgentHandler)
 
 
 function populateCards(array) {
@@ -359,3 +359,32 @@ function generateSearchResultsArray(array, searchWords){
 }
 
 // -----------Filter Urgent----------
+
+function filterUrgentHandler() {
+  cardSection.innerHTML = '';
+  filterButtonStyle();
+  populateUrgentCards();
+}
+
+function filterButtonStyle() {
+  filterUrgentButton.classList.toggle('active');
+  filterUrgentButton.clicked = !filterUrgentButton.clicked;
+}
+
+function populateUrgentCards(){
+    if (filterUrgentButton.clicked === true){
+    var urgent = urgentArray();
+    populateCards(urgent)
+  }
+   else {
+    populateCards(cardsArray)
+  }
+  
+}
+
+function urgentArray(){
+  var urgentArray = cardsArray.filter(function(arrayObj){
+    return arrayObj.urgent === true;
+  })
+  return urgentArray;
+}
