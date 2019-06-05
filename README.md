@@ -20,4 +20,9 @@ Users can create task lists and append them to cards that persist in local stora
 
 ### Mobile Product
 
-![Mobile Product](https://github.com/CLLane/CheckYoSelf/blob/master/ReadMe%20Photos/desktop-product.png)
+![Mobile Product](https://github.com/CLLane/CheckYoSelf/blob/master/ReadMe%20Photos/mobile-product.png)
+
+
+### GitHub Repo 
+
+![Repo](https://github.com/CLLane/CheckYoSelf)
