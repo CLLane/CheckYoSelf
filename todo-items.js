@@ -7,12 +7,10 @@ class TodoItems {
 
   getFromStorage() {
     var newtodoTasks = JSON.parse(localStorage.getItem('newtodoTasks'));
-    return newtodoTasks
+    return newtodoTasks;
   }
 
   saveToStorage(updatedArray) {
     localStorage.setItem('todoTasks', JSON.stringify(updatedArray));
-
   }
-
 }
