@@ -25,4 +25,4 @@ Users can create task lists and append them to cards that persist in local stora
 
 ### GitHub Repo 
 
-![Repo](https://github.com/CLLane/CheckYoSelf)
+(https://cllane.github.io/CheckYoSelf/.)
