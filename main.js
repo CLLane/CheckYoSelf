@@ -354,6 +354,7 @@ function filterUrgentHandler() {
   cardSection.innerHTML = '';
   urgentButtonStyle();
   urgentCardsArray();
+  urgentPrompt();
 }
 
 function urgentButtonStyle() {
@@ -376,4 +377,11 @@ function urgentArray(){
     return arrayObj.urgent === true;
   })
   return urgentArray;
+}
+
+function urgentPrompt() {
+  if (filterUrgentButton.clicked === true && urgentArray().length === 0) {
+    var urgentPrompt = '<p class="urgent-prompt">No Urgent Tasks</p>';
+    cardSection.insertAdjacentHTML('afterbegin', urgentPrompt)
+  }
 }
