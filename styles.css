@@ -7,11 +7,6 @@ body {
   font-family: 'Open Sans', sans-serif;
 }
 
-button {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 700;
-}
-
 header {
   background-color: #1F1F3D;
   display: flex;
@@ -19,6 +14,11 @@ header {
   justify-content: space-between;
   width: 100%;
   }
+
+button {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+}
 
 h1 {
   color: #FFFFFF;
@@ -39,33 +39,7 @@ input {
   border-radius: 2%;
 }
 
-
-.search-form {
-    margin-top: 1.5%;
-    margin-right: 1.5%;
-    display: flex;
-    padding-bottom: 0.87%;
-    width: 30%;
-  }
-
-.search-button {
-  border: none;
-  width: 10%;
-  min-width: 40px;
-  height: 40px;
-  background-color: #C7C3D8;
-  border-radius: 9% 0% 0% 9%;
-  }
-
-.search-input {
-  border: none;
-  width: 90%;
-  border-radius: 0% 2% 2% 0%;
-  }
-
-
 main {
- /* height: 100%;*/
   display: flex;
 }
 
@@ -74,6 +48,7 @@ aside {
   min-width: 275px;
   width: 30%;
   border-right: 2px solid #3C6577;
+  padding-left: 10px;
   }
 
 aside form {
@@ -94,79 +69,9 @@ aside button {
 label {
   color: #F3F6F7;
   font-size: 1pc;
-  margin-bottom: 1%;
+  margin-bottom: 7px;
   font-weight: 400;
 }
-
-.input-section {
-  border-bottom: 2px solid #3C6577;
-  display: flex;
-  flex-direction: column;
-  min-height: 20em;
-  justify-content: space-around;
-  padding-left: 10px;
-  }
-
-.clear-button {
-  margin-top: 3%;
-}
-
-.filter-section {
-  display: flex;
-  min-height: 25em;
-  padding-left: 2%;
-  width: 100%;
-}
-
-.filter-button {
-  margin-top: 3%;
-  width: 95%;
-}
-
-.item-input-container {
-  width: 100%;
-  display: flex;
-  margin-bottom: 10px;
-}
-
-.plus-button {
-  width: 11%;
-  height: 40px;
-  border: none;
-  border-radius: 0% 10% 10% 0%;
-  }
-
-
-.item-input {
-  width: 89%;
-  border: 2px solid #1F1F3D;
-  border-right: none;
-  border-radius: 2% 0% 0% 2%;
-}
-
-.card-section {
-  width: 70%;
-  padding: 1.5em;
-  columns: 2 250px;
-  column-gap: 30px;
-  height: auto;
-}
-
-.make-button:disabled {
-  background-color: #C7C3D8;
-  border: 2px solid #1F1F3D;
-}
-
-.plus-button:disabled {
-  background-color: #C7C3D8;
-  border: 2px solid #1F1F3D;
-}
-
-.clear-button:disabled {
-  background-color: #C7C3D8;
-  border: 2px solid #1F1F3D;
-}
-
 
 article {
   width: 100%;
@@ -180,13 +85,6 @@ article {
   break-inside: avoid;
 }
 
-.on-card-tasks {
-  min-height: 200px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-}
-
 footer {
   display: flex;
   justify-content: space-between;
@@ -196,18 +94,20 @@ footer {
   border-top: 2px solid #C7C3D8;
   border-bottom: 2px solid #C7C3D8;
   height: 50px;
-
 }
  
 h2 {
   border-bottom: 2px solid #C7C3D8;
   border-top: 2px solid #C7C3D8;
-  height: 40px
+  height: 40px;
+  display: flex;
+  align-items: center;
+  padding-left: 5px;
+  font-weight: 800;
 }
 
-.card-image {
+li {
   display: flex;
-  flex-direction: column;
   align-items: center;
 }
 
@@ -228,7 +128,121 @@ ul {
   flex-direction: column;
 }
 
+.search-form {
+  margin-top: 1.5%;
+  margin-right: 1.5%;
+  display: flex;
+  padding-bottom: 0.87%;
+  width: 30%;
+}
+
+.search-button {
+  border: none;
+  width: 10%;
+  min-width: 40px;
+  height: 40px;
+  background-color: #C7C3D8;
+  border-radius: 9% 0% 0% 9%;
+}
+
+.search-input {
+  border: none;
+  width: 90%;
+  border-radius: 0% 2% 2% 0%;
+}
+
+.input-section {
+  border-bottom: 2px solid #3C6577;
+  display: flex;
+  flex-direction: column;
+  min-height: 20em;
+  justify-content: space-around;
+}
+
+.title-form {
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+
+.item-input-container {
+  width: 100%;
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.item-input {
+  width: 89%;
+  border: 2px solid #1F1F3D;
+  border-right: none;
+  border-radius: 2% 0% 0% 2%;
+}
+
+.plus-button {
+  width: 12%;
+  height: 40px;
+  border: none;
+  border-radius: 0% 10% 10% 0%;
+  font-weight: 700;
+
+}
+
+.plus-button:disabled {
+  background-color: #C7C3D8;
+  border: 2px solid #1F1F3D;
+}
+
+
 .button-form {
+  margin-bottom: 10px;
+}
+
+.make-button:disabled {
+  background-color: #C7C3D8;
+  border: 2px solid #1F1F3D;
+}
+
+.clear-button {
+  margin-top: 3%;
+}
+
+.clear-button:disabled {
+  background-color: #C7C3D8;
+  border: 2px solid #1F1F3D;
+}
+
+.filter-section {
+  display: flex;
+  min-height: 25em;
+  width: 100%;
+}
+
+.filter-button {
+  margin-top: 3%;
+  width: 95%;
+}
+
+.card-section {
+  width: 70%;
+  padding: 1.5em;
+  columns: 2 250px;
+  column-gap: 30px;
+  height: auto;
+  background-color: #F3F6F7;
+}
+
+.no-task {
+    color: #3C6577;
+    font-size: 4em;
+    font-weight: 800;
+    text-align: center;
+    break-inside: avoid;
+}
+
+/*---------Tentative items-------------*/
+
+.tentative-item {
+  display: flex;
+  align-items: center;
   margin-bottom: 10px;
 }
 
@@ -237,29 +251,23 @@ ul {
   margin-right: 5px;
 }
 
-.tentative-item {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.title-form {
-  margin-bottom: 10px;
-}
-
+/*-----------Task Cards----------*/
 .on-card-tasks {
   min-height: 161px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.card-image {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .unchecked {
-  height: 25px;
-}
-
-.no-task {
-      color: #3C6577;
-    font-size: 4em;
-    font-weight: 800;
-    text-align: center;
+  height: 20px;
+  margin: 15px 5px 15px 5px;
 }
 
 /*-----------Urgent Card-----------*/
@@ -305,15 +313,58 @@ ul {
   color: #FFFFFF;
 }
 
+/*-----------Media Queries--------*/
+@media screen and (max-width: 675px) {
+  header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 125px;
+  }
+
+  h1 {
+    font-size: 50px;
+  }
+
+  .search-form {
+    width: 85%;
+  }
+
+  .search-button {
+    padding-top: 5px;
+  }
+
+  .search-img {
+    width: 30px;
+  }
+
+  .search-input {
+    margin-bottom: 10px;
+  }
+
+}
 
 @media screen and (max-width: 550px) {
-  
+  h1 {
+    margin-top: 15px;
+    font-size: 30px;
+  }
   main {
-    flex-direction: column;
+  flex-direction: column;
   }
 
   aside {
+  width: 100%;
+  height: 425px;
+  }
+
+  .card-section {
     width: 100%;
-    height: 425px;
+    min-height: 300px;
   }
+
+  .no-task {
+    font-size: 2em;
   }
+
+}

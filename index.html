@@ -11,7 +11,7 @@
   <header>
       <h1>Check <span>Yo'</span> Self</h1>
       <form class="search-form">
-        <button class="search-button" id="search-button"><img src="images/search.svg">
+        <button class="search-button" id="search-button"><img src="images/search.svg" class="search-img">
         </button>
         <input type="text" class="search-input" id="search-input">
       </form>
@@ -20,34 +20,45 @@
     <aside>
       <section class="input-section">
         <form class="title-form">
-          <label class="title-label">Task Title</label>
-          <input type="text" class="title-input" id="title-input">
+          <label>
+            Task Title
+          </label>
+          <input type="text" id="title-input">
         </form>
-        <ul class="tentative-item-list" id="tentative-item-list">
+        <ul id="tentative-item-list">
         </ul>
         <form>
-          <label>Task Item</label>
+          <label>
+            Task Item
+          </label>
           <div class="item-input-container">
             <input type="text" class="item-input" id="item-input">
-            <button class="plus-button" id="plus-button" disabled>+</button>
+            <button class="plus-button" id="plus-button" disabled>  +
+            </button>
           </div>
         </form>
         <form class="button-form">
-          <button class="make-button" id="make-button" disabled>Make Task List</button>
-          <button class="clear-button" id="clear-button" disabled>Clear All</button>
+          <button class="make-button" id="make-button" disabled>Make Task List
+          </button>
+          <button class="clear-button" id="clear-button" disabled>  Clear All
+          </button>
         </form>
       </section>
       <section class="filter-section">
-        <button class="filter-button" id="filter-button">Filter By Urgency</button>
+        <button class="filter-button" id="filter-button">
+          Filter By Urgency
+        </button>
       </section>
     </aside>
-    <section class="card-section masonry" id="card-section">
-      <p class="no-task hidden" id="no-task">No Currently Open Task</p>
+    <section class="card-section" id="card-section">
+      <p class="no-task hidden" id="no-task">
+        No Currently Open Task
+      </p>
     </section>
   </main>
   </head>
 </body>
-<script type="text/javascript" src="todo-items.js"></script>
-<script type="text/javascript" src="todo-list.js"></script>
-<script type="text/javascript" src="main.js"></script>
+  <script type="text/javascript" src="todo-items.js"></script>
+  <script type="text/javascript" src="todo-list.js"></script>
+  <script type="text/javascript" src="main.js"></script>
 </html>

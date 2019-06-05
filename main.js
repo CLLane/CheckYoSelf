@@ -307,11 +307,6 @@ function checkedOrNot(array) {
 }
 
 
-
-
-
-//Enable/Disable delete button on card//
-
 function enableDeleteButton(e) {
   var index = getCardById(e, cardsArray);
   var deleteObj = cardsArray[index].tasksArray;
@@ -345,16 +340,6 @@ function emptySearchPopulation(){
   populateCards(cardsArray);
 }
 
-// function getDomArray() {
-//   var domArray = cardSection.querySelectorAll('article');
-//   var idsArray = Array.from(domArray).map(function(article){
-//     return parseInt(article.getAttribute('data-id'));
-//   })
-//   var searchArray = ideasArray.filter(function(ideaObject) {
-//     return idsArray.includes(ideaObject.id);
-//   })
-//   return searchArray;
-// }
 
 function searchArray(array, searchWords){
   var searchResultsArray = array.filter(function(arrayObject){
