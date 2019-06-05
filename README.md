@@ -11,20 +11,13 @@ Users can create task lists and append them to cards that persist in local stora
 
 ### Mobile Layout
 
-![Mobile Layout with Menu Closed](http://frontend.turing.io/assets/images/projects/ideabox/ideabox-redux-03.jpg)
-
-![Mobile Layout with Menu Open](http://frontend.turing.io/assets/images/projects/ideabox/ideabox-redux-03.jpg)
-
-## Student-Created IdeaBox
-
-[GitHub Repo](https://github.com/CLLane/IdeaBoxRedux)
+![Mobile Layout](https://github.com/CLLane/CheckYoSelf/blob/master/ReadMe%20Photos/mobile-comp.png)
 
 ### Desktop Layout
 
-![Lane/DelValle Desktop Layout](https://i.imgur.com/aXrCmqD.png)
+![Desktop Product](https://github.com/CLLane/CheckYoSelf/blob/master/ReadMe%20Photos/desktop-product.png)
 
-### Mobile Layout
 
-![Lane/DelValle Mobile Layout Menu Closed](https://i.imgur.com/5ZhJyW8.png)
+### Mobile Product
 
-![Lane/DelValle Mobile Layout Menu Open](https://i.imgur.com/xRPSMg3.png)
+![Mobile Product](https://github.com/CLLane/CheckYoSelf/blob/master/ReadMe%20Photos/desktop-product.png)
