@@ -6,7 +6,7 @@ var makeCardButton = document.querySelector('#make-button');
 var tentativeItemList = document.querySelector('#tentative-item-list');
 var clearItemsButton = document.querySelector('#clear-button');
 var searchBar = document.querySelector('#search-input');
-var filterUrgentButton = document.querySelector('#filter-button');
+var urgentFilterButton = document.querySelector('#filter-button');
 var cardsArray = [];
 
 pageloadHandler();
@@ -19,7 +19,7 @@ titleInput.addEventListener('keyup', makeCardButtonHelper);
 tentativeItemList.addEventListener('click', deleteTentativeItem);
 clearItemsButton.addEventListener('click', clearButtonHandler);
 searchBar.addEventListener('keyup', searchFunction);
-filterUrgentButton.addEventListener('click', filterUrgentHandler);
+urgentFilterButton.addEventListener('click', filterUrgentHandler);
 
 function clearButtonHandler(e) {
   e.preventDefault();
@@ -326,7 +326,7 @@ function searchFunction(arrayName) {
   if (searchBar.value === '' || null) {
     emptySearchPopulation();
   }
-  if (filterUrgentButton.clicked === true) {
+  if (urgentFilterButton.clicked === true) {
     cardSection.innerHTML = '';
     populateCards(searchArray(urgentArray(), searchBar.value));
   } else {
@@ -349,12 +349,12 @@ function searchArray(array, searchWords) {
 }
 
 function urgentButtonStyle() {
-  filterUrgentButton.classList.toggle('active');
-  filterUrgentButton.clicked = !filterUrgentButton.clicked;
+  urgentFilterButton.classList.toggle('active');
+  urgentFilterButton.clicked = !urgentFilterButton.clicked;
 }
 
 function urgentCardsArray(){
-  if (filterUrgentButton.clicked === true) {
+  if (urgentFilterButton.clicked === true) {
     var urgent = urgentArray();
     populateCards(urgent);
   } else {
@@ -370,7 +370,8 @@ function urgentArray(){
 }
 
 function urgentPrompt() {
-  if (filterUrgentButton.clicked === true && urgentArray().length === 0) {
+  var array = urgentArray();
+  if (urgentFilterButton.clicked === true && array.length === 0) {
     var urgentPrompt = '<p class="urgent-prompt">No Urgent Tasks</p>';
     cardSection.insertAdjacentHTML('afterbegin', urgentPrompt);
   }

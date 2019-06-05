@@ -21,8 +21,8 @@ class ToDoList {
   }
 
   updateTask(index) {
-  this.tasksArray[index].checked = !this.tasksArray[index].checked
-  this.saveToStorage(cardsArray)
+  this.tasksArray[index].checked = !this.tasksArray[index].checked;
+  this.saveToStorage(cardsArray);
   }
 }
 
