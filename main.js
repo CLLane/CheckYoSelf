@@ -23,9 +23,9 @@ urgentFilterButton.addEventListener('click', filterUrgentHandler);
 
 function clearButtonHandler(e) {
   e.preventDefault();
-  resetItemInput();
-  resetTitleInput();
-  clearTaskUl();
+  resetInput(itemInput);
+  resetInput(titleInput);
+  resetInput(tentativeItemList);
   enableMakeButtonUl();
   disableClearAll() 
 }
@@ -34,7 +34,7 @@ function tentativeItemHandler(e) {
   e.preventDefault();
   var itemId = addItemToArray();
   createTentativeItem(itemInput.value, itemId)
-  resetItemInput();
+  resetInput(itemInput);
   enableMakeButtonUl();
   disablePlusButton();
 }
@@ -103,17 +103,17 @@ function enableMakeButtonUl () {
   }
 }
 
-function resetItemInput() {
-  itemInput.value = '';
+function resetInput(input) {
+  input.value = '';
 }
 
-function resetTitleInput() {
-  titleInput.value = '';
-}
+// // function resetTitleInput() {
+// //   titleInput.value = '';
+// // }
 
-function clearTaskUl() {
-  tentativeItemList.innerHTML = '';
-}
+// function clearTaskUl() {
+//   tentativeItemList.innerHTML = '';
+// }
 
 function createTodoTask() {
   localStorage.setItem('todoTasks', JSON.stringify([]));
